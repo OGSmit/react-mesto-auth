@@ -1,0 +1,39 @@
+.profiles__subtitle {
+  color: #fff;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  grid-area: name;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0 auto;
+  max-width: 220px;
+}
+
+@media (min-width: 550px) {
+  .profiles__subtitle {
+   text-align: start;
+   font-size: 18px;
+   line-height: 22px;
+   align-self: end;
+   justify-self: center;
+   margin-top: 0;
+   margin-bottom: 21px;
+   max-width: 300px;
+  }
+}
+
+@media (min-width: 590px) {
+  .profiles__subtitle {
+   max-width: 350px;
+  }
+}
+
+@media (min-width: 750px) {
+  .profiles__subtitle {
+   justify-self: start;
+   margin-left: 10px;
+  }
+}

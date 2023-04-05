@@ -1,0 +1,15 @@
+.profile-data {
+  padding-top: 42px;
+  padding-bottom: 36px;
+}
+
+@media (min-width: 720px) {
+  .profile-data {
+   display: flex;
+   flex-direction: row;
+   gap: 30px;
+   padding-bottom: 50px;
+   justify-content: space-between;
+  }
+}
+

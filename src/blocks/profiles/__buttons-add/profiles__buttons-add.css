@@ -1,0 +1,35 @@
+.profiles__buttons-add {
+  background-color: transparent;
+  margin: 0 auto;
+  margin-top: 34px;
+  width: 282px;
+  height: 50px;
+  border: 2px solid #FFFFFF;
+  border-radius: 2px;
+  background-image: url('../../../images/button_type_ad.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px 16px;
+  grid-area: add;
+}
+
+@media (min-width: 330px) {
+  .profiles__buttons-add {
+    width: 100%;
+    background-size: 22px 22px;
+  }
+}
+
+@media (min-width: 750px) {
+  .profiles__buttons_add {
+    max-width: 150px;
+    margin: 0;
+    align-self: center;
+    justify-self: end;
+  }
+}
+
+.profiles__buttons-add:hover {
+  cursor: pointer;
+  opacity: .6;
+} 

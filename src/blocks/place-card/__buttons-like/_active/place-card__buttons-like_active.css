@@ -1,0 +1,10 @@
+.place-card__buttons-like_active {
+  background-image: url('../../../../images/test.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 22px;
+  height: 19px;
+  border-style: none;
+  align-self: center;
+  opacity: 1;
+}

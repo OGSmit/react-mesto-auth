@@ -1,0 +1,16 @@
+.popup__subtitle {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #fff;
+  max-width: 240px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media (min-width: 450px) {
+  .popup__subtitle {
+    max-width: 291px;
+  }
+}

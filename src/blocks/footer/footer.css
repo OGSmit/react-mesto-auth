@@ -1,0 +1,43 @@
+.footer {
+  padding-top: 50px;
+  padding-left: 20px;
+  padding-bottom: 36px;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+@media (min-width: 550px) {
+  .footer {
+    padding-top: 68px;
+    padding-left: 20px;
+  }
+}
+
+@media (min-width: 900px) {
+  .footer {
+    padding-left: 0;
+    padding-bottom: 60px;
+  }
+}
+
+.gridContainer{
+  display: grid;
+  
+  /* grid-template-areas: 
+  "links links links links links"
+  "text text text"
+  "ima"; */
+}
+
+.links {
+  grid-area: links;
+  color: white;
+}
+
+.text {
+  grid-area: text;
+}
+
+.ima {
+  grid-area: ima;
+}

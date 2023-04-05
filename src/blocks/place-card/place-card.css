@@ -1,0 +1,13 @@
+.place-card {
+  border-radius: 10px;
+  position: relative;
+}
+
+.place-card__author {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  color:  white;
+  text-shadow: -2px 0 black;
+  opacity: .5;
+}

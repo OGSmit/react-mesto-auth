@@ -1,0 +1,17 @@
+.profiles__avatar {
+  display: block;
+  object-fit: cover;
+  border-radius: 50%;
+  width: 119.5px;
+  height: 119.5px;
+  margin: 0 auto;
+  grid-area: avatar;
+}
+
+@media (min-width: 650px) {
+  .profiles__avatar {
+    margin: 0;
+    align-self: center;
+    justify-self: start;
+  }
+}

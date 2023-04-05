@@ -1,0 +1,27 @@
+.profiles__row {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin: 0 auto;
+  padding-top: 26px;
+  padding-left: 25px;
+  padding-bottom: 7px;
+  grid-area: name;
+}
+
+@media (min-width: 550px) {
+  .profiles__row {
+    margin: 0;
+    padding-left: 10px;
+    padding-top: 20px;
+    gap: 12px;
+    align-self: baseline;
+    justify-self: center;
+  }
+}
+
+@media (min-width: 750px) {
+  .profiles__row {
+    justify-self: start;
+  }
+}

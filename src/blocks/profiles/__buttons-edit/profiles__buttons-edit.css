@@ -1,0 +1,26 @@
+.profiles__buttons-edit {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #FFFFFF;
+  background-image: url('../../../images/button_type_edit.svg');
+  background-repeat: no-repeat;
+  width: 18px;
+  height: 18px;
+  background-size: 7.5px 7.5px;
+  background-position: center;
+  align-self: center;
+}
+
+@media (min-width: 450px) {
+  .profiles__buttons-edit {
+    width: 24px;
+    height: 24px;
+    background-size: 10px 10px;
+    margin-top: 7px;
+    margin-left: 7px;
+  }
+}
+
+.profiles__buttons-edit:hover {
+  cursor: pointer;
+  opacity: .6;
+} 

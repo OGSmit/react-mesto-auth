@@ -1,0 +1,22 @@
+.place-card__buttons-delete {
+  background-color: rgba(255, 255, 255, 0);
+  background-image: url('../../../images/bin.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 18px;
+  height: 19px;
+  border-style: none;
+  align-self: center;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.place-card__buttons-delete:hover {
+  cursor: pointer;
+  opacity: .5;
+}
+
+.place-card__buttons-hidden {
+  visibility: hidden;
+}

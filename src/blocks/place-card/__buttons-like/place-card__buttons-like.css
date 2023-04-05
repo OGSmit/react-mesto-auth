@@ -1,0 +1,15 @@
+.place-card__buttons-like {
+  background-color: rgba(255, 255, 255, 0);
+  background-image: url('../../../images/button_type_like.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 22px;
+  height: 19px;
+  border-style: none;
+  align-self: center;
+}
+
+.place-card__buttons-like:hover {
+  cursor: pointer;
+  opacity: .5;
+}
