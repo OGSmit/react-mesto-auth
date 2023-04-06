@@ -50,6 +50,7 @@
 @import url(../src/blocks/sign-up/__form/sign-up__form.css);
 @import url(../src/blocks/sign-up/__input/sign-up__input.css);
 @import url(../src/blocks/sign-up/__button/sign-up__button.css);
+@import url(../src/blocks/sign-up/__link/sign-up__link.css);
 @import url(../src/blocks/sign-up/__registration-question/sign-up__registration-question.css);
 @import url(../src/blocks/footer/footer.css);
 @import url(../src/blocks/footer/__subtitle/footer__subtitle.css);
