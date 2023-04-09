@@ -1,8 +1,6 @@
 .header {
   margin: 0 auto;
-  padding-top: 28px;
-  padding-left: 27px;
-  padding-bottom: 27px;
+  padding: 28px;
   box-sizing: border-box;
   border-bottom: 1px solid rgba(84, 84, 84, .7);
   width: 100%;
@@ -22,8 +20,4 @@
   .header {
     padding-left: 0;
   }
-}
-
-.header__codewars {
-  opacity: .6;
 }

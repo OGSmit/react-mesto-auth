@@ -1,12 +1,12 @@
-import React from "react"
+import { useState } from "react"
 import InfoTooltip from "./InfoTooltip"
 import { register } from "../utils/Auth";
 import { useNavigate } from 'react-router-dom';
 
-function SignUp({loggedIn, handleSetEmail}) {
-  const [formValue, setFormValue] = React.useState({});
-  const [isToolTipOpened, setIsToolTipOpened] = React.useState(false)
-  const [isRegistartionDone, setIsRegistartionDone] = React.useState(false)
+function SignUp({ loggedIn, handleSetEmail }) {
+  const [formValue, setFormValue] = useState({});
+  const [isToolTipOpened, setIsToolTipOpened] = useState(false)
+  const [isRegistartionDone, setIsRegistartionDone] = useState(false)
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -21,7 +21,6 @@ function SignUp({loggedIn, handleSetEmail}) {
     e.preventDefault();
     const { password, email } = formValue;
     register(password, email).then((res) => {
-      
       if (res.ok) {
         setIsRegistartionDone(true)
         return res.json();
@@ -29,21 +28,22 @@ function SignUp({loggedIn, handleSetEmail}) {
     }).then((res) => {
       setIsToolTipOpened(true);
       handleSetEmail(res.data.email);
-    }
-    )
+    })
+      .then(() => {
+        e.target.reset()
+      })
       .catch((err) => {
         console.log(err)
       })
   }
 
   function closeToolTip() {
-    if(isRegistartionDone) {
+    if (isRegistartionDone) {
       setIsToolTipOpened(false);
       loggedIn();
       navigate('/main', { replace: true });
     } setIsToolTipOpened(false);
   }
-
 
   return (
     <section className="sign-up">

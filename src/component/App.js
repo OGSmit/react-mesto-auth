@@ -32,10 +32,6 @@ function App() {
   const [emailAccount, setEmailAccount] = useState('')
   const navigate = useNavigate();
 
-  useEffect(() => {
-    handleTokenCheck()
-  }, [])
-
   function handleCardRemoveClick(card) {
     setIsConfirmDeletePopupOpen(true);
     setCardForRemove(card);
@@ -79,9 +75,9 @@ function App() {
     setIsloggedIn(true);
   }
 
-function handleSetEmail(email) {
-  setEmailAccount(email)
-}
+  function handleSetEmail(email) {
+    setEmailAccount(email)
+  }
 
   function handleCardClick(card) {
     setIsImagePopupOpen(true);
@@ -205,18 +201,22 @@ function handleSetEmail(email) {
     }
   }, [isSomePopupOpen])
 
+  useEffect(() => {
+    handleTokenCheck()
+  }, [])
+
   function goRegistration() {
-    navigate('/sign-up', { replace: true })
+    navigate('/sign-up', { replace: true });
   }
 
   function goExit() {
     setIsloggedIn(false)
     localStorage.removeItem('jwt');
-    navigate('/', { replace: true })
+    navigate('/', { replace: true });
   }
 
   function goEnter() {
-    navigate('/sign-in', { replace: true })
+    navigate('/sign-in', { replace: true });
   }
 
   return (

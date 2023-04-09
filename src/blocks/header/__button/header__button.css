@@ -1,17 +1,29 @@
 .header__button {
   background-color: black;
   border: 0;
-  color: white;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
+  font-size: 14px;
+  line-height: 17px;
   text-align: right;
-  align-self: center;
+  color: #FFFFFF;
 }
 
 .header__button:hover {
   cursor: pointer;
   opacity: .6;
+}
+
+@media (min-width: 450px) {
+  .header__button {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+@media (min-width: 900px) {
+  .header {
+    padding-left: 0;
+  }
 }

@@ -1,13 +1,12 @@
-import React from "react"
+import { useState } from "react"
 import { authorize } from "../utils/Auth";
 import { useNavigate } from 'react-router-dom';
 
 function SignIn(props) {
-  const [formValue, setFormValue] = React.useState({});
+  const [formValue, setFormValue] = useState({});
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    
     const { name, value } = e.target;
     setFormValue({
       ...formValue,
@@ -19,17 +18,19 @@ function SignIn(props) {
     e.preventDefault();
     const { password, email } = formValue;
     authorize(password, email).then((res) => {
-      if(res.token) {
+      if (res.token) {
         localStorage.setItem('jwt', res.token);
-        navigate('/main', {replace: true})
+        navigate('/main', { replace: true })
         props.loggedIn();
         return res
       } return console.log('err')
+    }).then(() => {
+      e.target.reset()
     })
-    }
-  
+  }
 
-  return(
+
+  return (
     <section className="sign-up">
       <h1 className="sign-up__title">Вход</h1>
       <form onSubmit={handleSubmit} className="sign-up__form">
