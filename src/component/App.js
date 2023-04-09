@@ -10,7 +10,7 @@ import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
 import ConfirmDeletePopup from './ConfirmDeletePopup';
-import { Route, Routes, Navigate, BrowserRouter } from "react-router-dom";
+import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import SignUp from './SignUp';
 import SignIn from './SignIn';
 import ProtectedRouteElement from './ProtectedRoute';
@@ -29,6 +29,12 @@ function App() {
   const [isApiProcessing, setIsApiProcessing] = useState(false);
   const isSomePopupOpen = isEditProfilePopupOpen || isAddPlacePopupOpen || isEditAvatarPopupOpen || isImagePopupOpen || isConfirmDeletePopupOpen;
   const [isloggedIn, setIsloggedIn] = useState(false);
+  const [emailAccount, setEmailAccount] = useState('')
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    handleTokenCheck()
+  }, [])
 
   function handleCardRemoveClick(card) {
     setIsConfirmDeletePopupOpen(true);
@@ -60,11 +66,22 @@ function App() {
     if (localStorage.getItem('jwt')) {
       const jwt = localStorage.getItem('jwt');
       tokencheck(jwt).then((res) => {
-        console.log(res)
         setIsloggedIn(true)
-      });
+        setEmailAccount(res.data.email)
+      })
+        .then(() => {
+          navigate("/main", { replace: true })
+        });
     }
   }
+
+  function handleLogin() {
+    setIsloggedIn(true);
+  }
+
+function handleSetEmail(email) {
+  setEmailAccount(email)
+}
 
   function handleCardClick(card) {
     setIsImagePopupOpen(true);
@@ -188,41 +205,44 @@ function App() {
     }
   }, [isSomePopupOpen])
 
-  useEffect(() => {
-    handleTokenCheck();
-  }, [])
+  function goRegistration() {
+    navigate('/sign-up', { replace: true })
+  }
 
-  function handleHeaderButton() {
-    setIsloggedIn(true)
+  function goExit() {
+    setIsloggedIn(false)
+    localStorage.removeItem('jwt');
+    navigate('/', { replace: true })
+  }
+
+  function goEnter() {
+    navigate('/sign-in', { replace: true })
   }
 
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser} >
-        <Header onClick={handleTokenCheck} />
-        <BrowserRouter>
-          <Routes>
-            <Route path='/sign-up' element={<SignUp onClose={closeAllPopups} />} />
-            <Route path='/sign-in' element={<SignIn />} />
-            <Route path="/main" element={<ProtectedRouteElement element={Main} cards={cards}
-              onCardDelete={handleCardRemoveClick}
-              onCardLike={handleCardLike}
-              onCardClick={handleCardClick}
-              onEditAvatar={handleEditAvatarClick}
-              onEditProfile={handleEditProfileClick}
-              onAddPlace={handleAddPlaceClick}
-              loggedIn={isloggedIn} />} />
-            <Route path='/' element={isloggedIn ? <Navigate to="/main" replace /> : <Navigate to="/sign-in" replace />} />
-          </Routes>
-          <Footer />
-        </BrowserRouter>
+        <Header toEnter={goEnter} toRegistration={goRegistration} toExit={goExit} isLoggedIn={isloggedIn} email={emailAccount} />
+        <Routes>
+          <Route path='/' element={isloggedIn ? <Navigate to="/main" replace /> : <Navigate to="/sign-in" replace />} />
+          <Route path='/sign-up' element={<SignUp handleSetEmail={handleSetEmail} loggedIn={handleLogin} onClose={closeAllPopups} />} />
+          <Route path='/sign-in' element={<SignIn loggedIn={handleLogin} />} />
+          <Route path="/main" element={<ProtectedRouteElement element={Main} cards={cards}
+            onCardDelete={handleCardRemoveClick}
+            onCardLike={handleCardLike}
+            onCardClick={handleCardClick}
+            onEditAvatar={handleEditAvatarClick}
+            onEditProfile={handleEditProfileClick}
+            onAddPlace={handleAddPlaceClick}
+            loggedIn={true} />} />
+        </Routes>
+        <Footer />
         <ImagePopup isApiProcessing={isApiProcessing} isOpened={isImagePopupOpen} onClose={closeAllPopups} onCardClick={handleCardClick} card={selectedCard} />
         <EditProfilePopup isApiProcessing={isApiProcessing} onUpdateUser={handleUpdateUser} isOpened={isEditProfilePopupOpen} onClose={closeAllPopups} />
         <AddPlacePopup isApiProcessing={isApiProcessing} onAddPlace={handleAddPlaceSubmit} isOpened={isAddPlacePopupOpen} onClose={closeAllPopups} />
         <EditAvatarPopup isApiProcessing={isApiProcessing} onUpdateAvatar={handleUpdateAvatar} isOpened={isEditAvatarPopupOpen} onClose={closeAllPopups} />
         <ConfirmDeletePopup isApiProcessing={isApiProcessing} isOpened={isConfirmDeletePopupOpen} onClose={closeAllPopups} onSubmit={handleCardDelete} />
       </CurrentUserContext.Provider>
-
     </div>
   );
 }
