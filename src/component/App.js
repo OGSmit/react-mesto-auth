@@ -66,7 +66,7 @@ function App() {
   function handleTokenCheck() {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
-    return  tokencheck(jwt).then((res) => {
+      return tokencheck(jwt).then((res) => {
         setIsloggedIn(true)
         setEmailAccount(res.data.email)
       })
@@ -223,6 +223,7 @@ function App() {
         })
         .catch(err => console.log(`Component Main get ${err}`))
     }
+
   }, []);
 
   useEffect(() => {
@@ -232,6 +233,7 @@ function App() {
           setCards([...cards, ...data]);
         }).catch(err => console.log(`Component Main get ${err}`))
     }
+
   }, []);
 
   useEffect(() => {
@@ -282,7 +284,7 @@ function App() {
               onEditAvatar={handleEditAvatarClick}
               onEditProfile={handleEditProfileClick}
               onAddPlace={handleAddPlaceClick}
-              loggedIn={true} />} />
+              loggedIn={isloggedIn} />} />
         </Routes>
         <Footer />
         <ImagePopup isApiProcessing={isApiProcessing} isOpened={isImagePopupOpen} onClose={closeAllPopups} onCardClick={handleCardClick} card={selectedCard} />
