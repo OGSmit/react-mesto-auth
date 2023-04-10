@@ -83,8 +83,8 @@ function App() {
         if (res.token) {
           setEmailAccount(email)
           localStorage.setItem('jwt', res.token);
+          setIsloggedIn(true)
           navigate('/main', { replace: true })
-          handleSetLogin();
           setIsToolTipOpened(true);
           setIsAuthActionDone(true);
           setToolTipMessage('Вход Выполнен!')
@@ -114,13 +114,13 @@ function App() {
       })
   }
 
-  function handleSetLogin() {
-    setIsloggedIn(true);
-  }
+  // function handleSetLogin() {
+  //   setIsloggedIn(true);
+  // }
 
-  function handleSetEmail(email) {
-    setEmailAccount(email)
-  }
+  // function handleSetEmail(email) {
+  //   setEmailAccount(email)
+  // }
 
   function handleCardClick(card) {
     setIsImagePopupOpen(true);
@@ -214,7 +214,7 @@ function App() {
 
   useEffect(() => {
     if (isloggedIn) {
-      api.getProfile()
+      return api.getProfile()
         .then((data) => {
           setCurrentUser({
             ...currentUser,
@@ -223,18 +223,16 @@ function App() {
         })
         .catch(err => console.log(`Component Main get ${err}`))
     }
-
-  }, []);
+  }, [isloggedIn]);
 
   useEffect(() => {
     if (isloggedIn) {
-      api.getInitialCard()
+      return api.getInitialCard()
         .then((data) => {
           setCards([...cards, ...data]);
         }).catch(err => console.log(`Component Main get ${err}`))
     }
-
-  }, []);
+  }, [isloggedIn]);
 
   useEffect(() => {
     function closeByEscape(e) {
