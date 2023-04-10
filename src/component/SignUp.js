@@ -1,13 +1,8 @@
 import { useState } from "react"
-import InfoTooltip from "./InfoTooltip"
-import { register } from "../utils/Auth";
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-function SignUp({ loggedIn, handleSetEmail }) {
+function SignUp({ onRegistr }) {
   const [formValue, setFormValue] = useState({});
-  const [isToolTipOpened, setIsToolTipOpened] = useState(false)
-  const [isRegistartionDone, setIsRegistartionDone] = useState(false)
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,29 +15,10 @@ function SignUp({ loggedIn, handleSetEmail }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { password, email } = formValue;
-    register(password, email).then((res) => {
-      if (res.ok) {
-        setIsRegistartionDone(true)
-        return res.json();
-      } return console.log(res.status)
-    }).then((res) => {
-      setIsToolTipOpened(true);
-      handleSetEmail(res.data.email);
-    })
+    onRegistr(password, email)
       .then(() => {
         e.target.reset()
       })
-      .catch((err) => {
-        console.log(err)
-      })
-  }
-
-  function closeToolTip() {
-    if (isRegistartionDone) {
-      setIsToolTipOpened(false);
-      loggedIn();
-      navigate('/main', { replace: true });
-    } setIsToolTipOpened(false);
   }
 
   return (
@@ -53,8 +29,7 @@ function SignUp({ loggedIn, handleSetEmail }) {
         <input required type="password" onChange={handleChange} placeholder="Пароль" name="password" className="sign-up__input"></input>
         <button className="sign-up__button">Зарегистрироваться</button>
       </form>
-      <p className="sign-up__registration-question">Уже зарегистрированы? <a className="sign-up__link" href="/sign-in">Войти</a></p>
-      <InfoTooltip onClose={closeToolTip} title={isRegistartionDone} isOpened={isToolTipOpened} />
+      <p className="sign-up__registration-question">Уже зарегистрированы? <Link className="sign-up__link" to="/sign-in">Войти</Link></p>
     </section>
   )
 }

@@ -18,7 +18,7 @@ function InfoTooltip(props) {
       <div onClick={handleClickForChildren} className="popup__container popup__container_form popup__container_target">
         <button className="popup__buttons-close" type="button" onClick={props.onClose} />
         <img src={props.title ? succesIcon : denied} />
-        <h3 className="popup__title-tooltip">{props.title ? 'Вы успешно зарегистрировались!' : 'Что-то пошло не так! Попробуйте ещё раз.'}</h3>
+        <h3 className="popup__title-tooltip">{props.message}</h3>
       </div>
     </div>
   )

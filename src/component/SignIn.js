@@ -1,12 +1,9 @@
 import { useState } from "react"
-import { authorize } from "../utils/Auth";
-import { useNavigate } from 'react-router-dom';
 
-function SignIn(props) {
+function SignIn({ onLogin }) {
   const [formValue, setFormValue] = useState({});
-  const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  function handleChange(e) {
     const { name, value } = e.target;
     setFormValue({
       ...formValue,
@@ -14,21 +11,14 @@ function SignIn(props) {
     });
   }
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
     const { password, email } = formValue;
-    authorize(password, email).then((res) => {
-      if (res.token) {
-        localStorage.setItem('jwt', res.token);
-        navigate('/main', { replace: true })
-        props.loggedIn();
-        return res
-      } return console.log('err')
-    }).then(() => {
-      e.target.reset()
-    })
+    onLogin(password, email)
+      .then(() => {
+        e.target.reset()
+      })
   }
-
 
   return (
     <section className="sign-up">
