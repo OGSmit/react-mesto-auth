@@ -1,0 +1,45 @@
+.header__button-burger {
+  visibility: visible ;
+  background-image: url(../../../images/burgerIcon.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  align-self: center;
+  border: 0;
+}
+
+.header__button-burger:hover {
+  cursor: pointer;
+  opacity: .6;
+}
+
+@media (min-width: 500px) {
+  .header__button-burger {
+    visibility: hidden;
+  }
+}
+
+.header__button-burger_close {
+  visibility: visible ;
+  background-image: url(../../../images/cross.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  align-self: center;
+  border: 0;
+}
+
+.header__button-burger_close:hover {
+  cursor: pointer;
+  opacity: .6;
+}
+
+@media (min-width: 500px) {
+  .header__button-burger_close {
+    visibility: hidden;
+  }
+}

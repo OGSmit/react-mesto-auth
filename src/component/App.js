@@ -16,6 +16,8 @@ import { useState, useEffect } from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import { tokencheck, authorize, register } from '../utils/Auth';
+import BurgerMenu from './BurgerMenu';
+
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -32,7 +34,12 @@ function App() {
   const [emailAccount, setEmailAccount] = useState('');
   const [isToolTipOpened, setIsToolTipOpened] = useState(false);
   const [isAuthActionDone, setIsAuthActionDone] = useState(false);
-  const [toolTipMessage, setToolTipMessage] = useState('')
+  const [toolTipMessage, setToolTipMessage] = useState('');
+  const [isBurgerOpened, setIsBurgerOpened] =useState(false);
+
+  // const [infoToolTipData, setInfoToolTipData] = useState({ isOpen:false, text:'', status:false })
+  // Попробовал , т.к. проект не будет маштабироваться решил оставить пред. вариант
+
   const isSomePopupOpen = isEditProfilePopupOpen || isAddPlacePopupOpen || isEditAvatarPopupOpen || isImagePopupOpen || isConfirmDeletePopupOpen;
 
   const navigate = useNavigate();
@@ -61,6 +68,7 @@ function App() {
     setIsImagePopupOpen(false);
     setIsConfirmDeletePopupOpen(false);
     setIsApiProcessing(false);
+    setIsBurgerOpened(false)
   }
 
   function handleTokenCheck() {
@@ -85,9 +93,6 @@ function App() {
           localStorage.setItem('jwt', res.token);
           setIsloggedIn(true)
           navigate('/main', { replace: true })
-          setIsToolTipOpened(true);
-          setIsAuthActionDone(true);
-          setToolTipMessage('Вход Выполнен!')
         }
       })
       .catch(() => {
@@ -113,14 +118,6 @@ function App() {
         setToolTipMessage('Что-то пошло не так! Попробуйте ещё раз')
       })
   }
-
-  // function handleSetLogin() {
-  //   setIsloggedIn(true);
-  // }
-
-  // function handleSetEmail(email) {
-  //   setEmailAccount(email)
-  // }
 
   function handleCardClick(card) {
     setIsImagePopupOpen(true);
@@ -259,17 +256,23 @@ function App() {
   function goExit() {
     setIsloggedIn(false)
     localStorage.removeItem('jwt');
-    navigate('/', { replace: true });
+    navigate('/sign-in', { replace: true });
   }
 
   function goEnter() {
     navigate('/sign-in', { replace: true });
   }
 
+  function openBurger() {
+    setIsBurgerOpened(true)
+    document.querySelector('.burger').classList.add('burger_opened');
+  }
+
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser} >
-        <Header toEnter={goEnter} toRegistration={goRegistration} toExit={goExit} isLoggedIn={isloggedIn} email={emailAccount} />
+        <BurgerMenu onClose={closeAllPopups} email={emailAccount} isOpened={isBurgerOpened} isLoggedIn={isloggedIn} toEnter={goEnter} toExit={goExit} toRegistration={goRegistration} />
+        <Header isBurgerOpened={isBurgerOpened} handleCloseBurger={closeAllPopups} handleOpenBurger={openBurger} toEnter={goEnter} toRegistration={goRegistration} toExit={goExit} isLoggedIn={isloggedIn} email={emailAccount} />
         <Routes>
           <Route path='/' element={isloggedIn ? <Navigate to="/main" replace /> : <Navigate to="/sign-in" replace />} />
           <Route path='/sign-up' element={<SignUp onRegistr={handleRegistration} />} />
