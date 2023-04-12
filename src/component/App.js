@@ -16,31 +16,31 @@ import { useState, useEffect } from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import { tokencheck, authorize, register } from '../utils/Auth';
-import BurgerMenu from './BurgerMenu';
+
 
 
 function App() {
+                    // States
+  // boolean
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+  const [isConfirmDeletePopupOpen, setIsConfirmDeletePopupOpen] = useState(false);
+  const [isApiProcessing, setIsApiProcessing] = useState(false);
+  const [isloggedIn, setIsloggedIn] = useState(false);
+  const [isToolTipOpened, setIsToolTipOpened] = useState(false);
+  const [isAuthActionDone, setIsAuthActionDone] = useState(false);
+  const [isBurgerOpened, setIsBurgerOpened] = useState(false);
+  const isSomePopupOpen = isEditProfilePopupOpen || isAddPlacePopupOpen || isEditAvatarPopupOpen || isImagePopupOpen || isConfirmDeletePopupOpen;
+  // object
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
-  const [isConfirmDeletePopupOpen, setIsConfirmDeletePopupOpen] = useState(false);
   const [cardForRemove, setCardForRemove] = useState({});
-  const [isApiProcessing, setIsApiProcessing] = useState(false);
-  const [isloggedIn, setIsloggedIn] = useState(false);
+  // string
   const [emailAccount, setEmailAccount] = useState('');
-  const [isToolTipOpened, setIsToolTipOpened] = useState(false);
-  const [isAuthActionDone, setIsAuthActionDone] = useState(false);
   const [toolTipMessage, setToolTipMessage] = useState('');
-  const [isBurgerOpened, setIsBurgerOpened] =useState(false);
-
-  // const [infoToolTipData, setInfoToolTipData] = useState({ isOpen:false, text:'', status:false })
-  // Попробовал , т.к. проект не будет маштабироваться решил оставить пред. вариант
-
-  const isSomePopupOpen = isEditProfilePopupOpen || isAddPlacePopupOpen || isEditAvatarPopupOpen || isImagePopupOpen || isConfirmDeletePopupOpen;
 
   const navigate = useNavigate();
 
@@ -271,14 +271,31 @@ function App() {
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser} >
-        <BurgerMenu onClose={closeAllPopups} email={emailAccount} isOpened={isBurgerOpened} isLoggedIn={isloggedIn} toEnter={goEnter} toExit={goExit} toRegistration={goRegistration} />
-        <Header isBurgerOpened={isBurgerOpened} handleCloseBurger={closeAllPopups} handleOpenBurger={openBurger} toEnter={goEnter} toRegistration={goRegistration} toExit={goExit} isLoggedIn={isloggedIn} email={emailAccount} />
+
+        <Header
+          onClose={closeAllPopups}
+          isBurgerOpened={isBurgerOpened}
+          handleCloseBurger={closeAllPopups}
+          handleOpenBurger={openBurger}
+          toEnter={goEnter}
+          toRegistration={goRegistration}
+          toExit={goExit}
+          isLoggedIn={isloggedIn}
+          email={emailAccount} />
+
         <Routes>
+
           <Route path='/' element={isloggedIn ? <Navigate to="/main" replace /> : <Navigate to="/sign-in" replace />} />
+
           <Route path='/sign-up' element={<SignUp onRegistr={handleRegistration} />} />
+
           <Route path='/sign-in' element={<SignIn onLogin={handleLogin} />} />
+
           <Route path="/main" element={
-            <ProtectedRouteElement element={Main} cards={cards}
+
+            <ProtectedRouteElement
+              element={Main}
+              cards={cards}
               onCardDelete={handleCardRemoveClick}
               onCardLike={handleCardLike}
               onCardClick={handleCardClick}
@@ -286,14 +303,47 @@ function App() {
               onEditProfile={handleEditProfileClick}
               onAddPlace={handleAddPlaceClick}
               loggedIn={isloggedIn} />} />
+
         </Routes>
+
         <Footer />
-        <ImagePopup isApiProcessing={isApiProcessing} isOpened={isImagePopupOpen} onClose={closeAllPopups} onCardClick={handleCardClick} card={selectedCard} />
-        <EditProfilePopup isApiProcessing={isApiProcessing} onUpdateUser={handleUpdateUser} isOpened={isEditProfilePopupOpen} onClose={closeAllPopups} />
-        <AddPlacePopup isApiProcessing={isApiProcessing} onAddPlace={handleAddPlaceSubmit} isOpened={isAddPlacePopupOpen} onClose={closeAllPopups} />
-        <EditAvatarPopup isApiProcessing={isApiProcessing} onUpdateAvatar={handleUpdateAvatar} isOpened={isEditAvatarPopupOpen} onClose={closeAllPopups} />
-        <ConfirmDeletePopup isApiProcessing={isApiProcessing} isOpened={isConfirmDeletePopupOpen} onClose={closeAllPopups} onSubmit={handleCardDelete} />
-        <InfoTooltip onClose={() => { setIsToolTipOpened(false) }} title={isAuthActionDone} message={toolTipMessage} isOpened={isToolTipOpened} />
+
+        <ImagePopup
+          isApiProcessing={isApiProcessing}
+          isOpened={isImagePopupOpen}
+          onClose={closeAllPopups}
+          onCardClick={handleCardClick}
+          card={selectedCard} />
+
+        <EditProfilePopup
+          isApiProcessing={isApiProcessing}
+          onUpdateUser={handleUpdateUser}
+          isOpened={isEditProfilePopupOpen}
+          onClose={closeAllPopups} />
+
+        <AddPlacePopup
+          isApiProcessing={isApiProcessing}
+          onAddPlace={handleAddPlaceSubmit}
+          isOpened={isAddPlacePopupOpen}
+          onClose={closeAllPopups} />
+
+        <EditAvatarPopup
+          isApiProcessing={isApiProcessing}
+          onUpdateAvatar={handleUpdateAvatar}
+          isOpened={isEditAvatarPopupOpen}
+          onClose={closeAllPopups} />
+
+        <ConfirmDeletePopup
+          isApiProcessing={isApiProcessing}
+          isOpened={isConfirmDeletePopupOpen}
+          onClose={closeAllPopups}
+          onSubmit={handleCardDelete} />
+
+        <InfoTooltip
+          onClose={() => { setIsToolTipOpened(false) }}
+          title={isAuthActionDone}
+          message={toolTipMessage}
+          isOpened={isToolTipOpened} />
       </CurrentUserContext.Provider>
     </div>
   );

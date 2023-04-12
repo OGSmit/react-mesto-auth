@@ -1,0 +1,11 @@
+.burger_opened {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+}
+
+@media (min-width: 450px) {
+  .burger_opened {
+    display: none;
+  }
+}

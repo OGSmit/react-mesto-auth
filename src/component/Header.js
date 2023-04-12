@@ -1,11 +1,15 @@
 import '../index.css';
 import React from 'react';
 import logo from '../images/logo.svg'
+import BurgerMenu from './BurgerMenu';
 
-function Header({ toExit, toRegistration, email, isLoggedIn, toEnter, handleOpenBurger , handleCloseBurger, isBurgerOpened  }) {
+// Поместил компонент BurgerMenu в хедер , т.к. он использует одинаковые пропсы , вроде логично )
+
+function Header({onClose, toExit, toRegistration, email, isLoggedIn, toEnter, handleOpenBurger , handleCloseBurger, isBurgerOpened  }) {
   const isRegistaration = document.location.pathname === '/sign-up' ? true : false;
-
   return (
+    <>
+    <BurgerMenu onClose={onClose} email={email} isOpened={isBurgerOpened} isLoggedIn={isLoggedIn} toEnter={toEnter} toExit={toExit} toRegistration={toRegistration}/>
     <header className="header">
       <img alt="Логотип - Место" src={logo} className="header__logo" />
       <div className='header__account-container'>
@@ -14,6 +18,7 @@ function Header({ toExit, toRegistration, email, isLoggedIn, toEnter, handleOpen
         <button onClick={isLoggedIn ? toExit : isRegistaration ? toEnter : toRegistration} className="header__button">{isLoggedIn ? 'Выйти' : isRegistaration ? 'Войти' : 'Регистрация'}</button>
       </div>
     </header>
+    </>
   )
 }
 

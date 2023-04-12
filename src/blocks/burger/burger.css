@@ -1,0 +1,18 @@
+.burger {
+  display: none;
+  visibility: hidden;
+  flex-direction: column;
+  opacity: 0;
+  transition: display .5s linear, opacity .5s linear;
+  background-color: rgba(0, 0, 0);
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(84, 84, 84, .7);
+}
+
+@media (min-width: 450px) {
+  .burger {
+    display: none;
+  }
+}
