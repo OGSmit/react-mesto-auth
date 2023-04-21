@@ -1,7 +1,9 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 function BurgerMenu({isOpened, isLoggedIn, toEnter, toExit, toRegistration, email , onClose}) {
-  const isRegistaration = document.location.pathname === '/sign-up' ? true : false;
+  const location = useLocation()
+  const isRegistaration = location.pathname === '/sign-up' ? true : false;
 
   function handleClick(e) {
     e.stopPropagation();

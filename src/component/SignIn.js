@@ -8,7 +8,6 @@ function SignIn({ onLogin }) {
 
   function handleChangeEmail(e) {
     setIsInvalidEmail(e.target.validity.valid)
-    console.log(e.target.validity.valid)
     const { name, value } = e.target;
     setFormValue({
       ...formValue,
@@ -18,7 +17,6 @@ function SignIn({ onLogin }) {
 
   function handleChangePassword(e) {
     setIsInvalidPassword(e.target.validity.valid)
-    console.log(e.target.validity.valid, isFormValid)
     const { name, value } = e.target;
     setFormValue({
       ...formValue,
