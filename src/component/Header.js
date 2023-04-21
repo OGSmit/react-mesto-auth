@@ -2,11 +2,13 @@ import '../index.css';
 import React from 'react';
 import logo from '../images/logo.svg'
 import BurgerMenu from './BurgerMenu';
+import { useLocation } from 'react-router-dom';
 
 // Поместил компонент BurgerMenu в хедер , т.к. он использует одинаковые пропсы , вроде логично )
 
 function Header({onClose, toExit, toRegistration, email, isLoggedIn, toEnter, handleOpenBurger , handleCloseBurger, isBurgerOpened  }) {
-  const isRegistaration = document.location.pathname === '/sign-up' ? true : false;
+  const location = useLocation()
+  const isRegistaration = location.pathname === '/sign-up' ? true : false;
   return (
     <>
     <BurgerMenu onClose={onClose} email={email} isOpened={isBurgerOpened} isLoggedIn={isLoggedIn} toEnter={toEnter} toExit={toExit} toRegistration={toRegistration}/>
