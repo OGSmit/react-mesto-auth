@@ -7,10 +7,6 @@
   <p>Продолжение проекта <a href="https://ogsmit.github.io/mesto-react/">Место</a></p>
 </div>
 
-<div id="header" align="center">
-  <img src="/src/images/preview.jpg" width="1000"/>
-</div>
-
 ## Проект знакомил нас с такими понятиями как :
 
 - ***HTML**, **CSS**, **JavaScript**, **React***
@@ -35,9 +31,8 @@
   <img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg" title="HTML5" alt="HTML" width="40" height="40"/>&nbsp;
     <img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg" title="JavaScript" alt="JavaScript" width="40" height="40"/>&nbsp;
       <img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original-wordmark.svg" title="React" alt="React" width="40" height="40"/>&nbsp;
-      <img src="/src/images/logo-react-router.svg" title="React" alt="React" width="40" height="40"/>&nbsp;
 <p>Посмотреть проект</p>
-<a target="_blank" href="https://ogsmit.github.io/mesto-react/"><img src="/src/images/checkIt.gif"></a></center>
+<a target="_blank" href="https://ogsmit.github.io/react-mesto-auth/"><img src="/src/images/checkIt.gif"></a></center>
 </div>
 
 ***
