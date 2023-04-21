@@ -1,4 +1,4 @@
-
+import React from "react";
 
 function BurgerMenu({isOpened, isLoggedIn, toEnter, toExit, toRegistration, email , onClose}) {
   const isRegistaration = document.location.pathname === '/sign-up' ? true : false;

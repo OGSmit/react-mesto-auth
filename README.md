@@ -1,20 +1,47 @@
-# Проект: Место
+<div id="header" align="center">
+  <img src="/src/images/Mylogo.png" width="100"/>
+</div>
 
-### Обзор
-* Cервис Mesto - мини проект , куда вы загрузите свои фотографии, лайкать , удалять их, а также редактировать профиль.
+<div align="center">
+  <h1>Проект "Место.React + Авторизация"</h1>
+  <p>Продолжение проекта <a href="https://ogsmit.github.io/mesto-react/">Место</a></p>
+</div>
 
-### Стек
-* HTML/CSS/JS/React
+<div id="header" align="center">
+  <img src="/src/images/preview.jpg" width="1000"/>
+</div>
 
-### Описание функционала
-- Реализована регистрация и аутентификация пользователя
-- Реализована возможность менять информацию о пользователе, ставить и снимать лайки, удалять добавленные фотографии.
-- адаптивная верстка
-- localStorage
+## Проект знакомил нас с такими понятиями как :
 
+- ***HTML**, **CSS**, **JavaScript**, **React***
+- *React Router*
+- *JWT Token*
+- *Localstorage*
+<div id="header" align="center">
+  <img src="/src/images/enter.gif" width="1000"/>
+</div>
 
-### Для сборки проекта необходимо выполнить следующие команды:
-- для тестового входа готовый логин: stasbasov@mail.com и пароль: qwerty
-- npm i - установит все пакеты
-- npm run start - соберет проект
+- *SPA*
+<div id="header" align="center">
+  <img src="/src/images/login.gif" width="1000"/>
+</div>
 
+- *Продвинутое владение **Git Bash** и **Github***
+
+***
+
+<div align="center">
+<img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-plain-wordmark.svg"  title="CSS3" alt="CSS" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg" title="HTML5" alt="HTML" width="40" height="40"/>&nbsp;
+    <img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg" title="JavaScript" alt="JavaScript" width="40" height="40"/>&nbsp;
+      <img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original-wordmark.svg" title="React" alt="React" width="40" height="40"/>&nbsp;
+      <img src="/src/images/logo-react-router.svg" title="React" alt="React" width="40" height="40"/>&nbsp;
+<p>Посмотреть проект</p>
+<a target="_blank" href="https://ogsmit.github.io/mesto-react/"><img src="/src/images/checkIt.gif"></a></center>
+</div>
+
+***
+### Полезные ссылки
+1. [Яндекс Практикум](https://practicum.yandex.ru)
+2. [Дока](https://doka.guide "Энциклопедия про web-dev")
+3. [CodeWars](https://www.codewars.com)

@@ -15,7 +15,7 @@
 
 .sign-up__button:hover {
   cursor: pointer;
-  opacity: .85;
+  opacity: .4;
 }
 
 @media (min-width: 450px) {
@@ -24,3 +24,14 @@
     height: 50px;
   }
 }
+
+.sign-up__button_invalid {
+  opacity: .4;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 1);
+  color: rgba(0, 0, 0, 1);
+}
+
+.sign-up__button_invalid:hover {
+  cursor: auto;
+ }
