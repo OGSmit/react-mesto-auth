@@ -34,7 +34,9 @@
 <p>Посмотреть проект</p>
 <a target="_blank" href="https://ogsmit.github.io/react-mesto-auth/"><img src="/src/images/checkIt.gif"></a></center>
 </div>
-
+<div align="center">
+  <p>Тестовый Вход Логин: stasbasov@mail.com Пароль: qwerty</p>
+</div>
 ***
 ### Полезные ссылки
 1. [Яндекс Практикум](https://practicum.yandex.ru)
