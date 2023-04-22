@@ -39,7 +39,7 @@ function SignIn({ onLogin }) {
       <form onSubmit={handleSubmit} className="sign-up__form">
         <input required minLength={2} type="email" onChange={handleChangeEmail} placeholder="Email" name="email" className="sign-up__input"></input>
         <input required minLength={8} type="password" onChange={handleChangePassword} placeholder="Пароль" name="password" className="sign-up__input"></input>
-        <button className={!isFormValid? "sign-up__button sign-up__button_invalid" : 'sign-up__button'}>Войти</button>
+        <button className='sign-up__button'>Войти</button>
       </form>
     </section>
   )

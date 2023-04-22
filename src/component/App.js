@@ -44,6 +44,10 @@ function App() {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    handleTokenCheck()
+  }, [])
+
   function handleCardRemoveClick(card) {
     setIsConfirmDeletePopupOpen(true);
     setCardForRemove(card);
@@ -198,8 +202,8 @@ function App() {
   }
 
   function goExit() {
-    localStorage.removeItem('jwt');
     setIsloggedIn(false)
+    localStorage.removeItem('jwt');
     navigate('/', { replace: true });
   }
 
@@ -264,9 +268,7 @@ function App() {
     }
   }, [isSomePopupOpen])
 
-  useEffect(() => {
-    handleTokenCheck()
-  }, [])
+
 
 
   return (
