@@ -20,7 +20,7 @@ import { tokencheck, authorize, register } from '../utils/Auth';
 
 
 function App() {
-                    // States
+  // States
   // boolean
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
@@ -193,9 +193,28 @@ function App() {
       })
   }
 
+  function goRegistration() {
+    navigate('/sign-up', { replace: true });
+  }
+
+  function goExit() {
+    localStorage.removeItem('jwt');
+    setIsloggedIn(false)
+    navigate('/', { replace: true });
+  }
+
+  function goEnter() {
+    navigate('/sign-in', { replace: true });
+  }
+
+  function openBurger() {
+    setIsBurgerOpened(true)
+    document.querySelector('.burger').classList.add('burger_opened');
+  }
+
   function handleAddPlaceSubmit(item) {
     setIsApiProcessing(true)
-    api.addCard(item)
+    return api.addCard(item)
       .then((data) => {
         setCards([
           data,
@@ -249,24 +268,6 @@ function App() {
     handleTokenCheck()
   }, [])
 
-  function goRegistration() {
-    navigate('/sign-up', { replace: true });
-  }
-
-  function goExit() {
-    setIsloggedIn(false)
-    localStorage.removeItem('jwt');
-    navigate('/sign-in', { replace: true });
-  }
-
-  function goEnter() {
-    navigate('/sign-in', { replace: true });
-  }
-
-  function openBurger() {
-    setIsBurgerOpened(true)
-    document.querySelector('.burger').classList.add('burger_opened');
-  }
 
   return (
     <div className="page">
