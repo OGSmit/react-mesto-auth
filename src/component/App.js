@@ -46,6 +46,9 @@ function App() {
 
   useEffect(() => {
     handleTokenCheck()
+    return () => {
+      console.log('handleTokenCheck()')
+    }
   }, [])
 
   function handleCardRemoveClick(card) {
@@ -89,7 +92,7 @@ function App() {
     }
   }
 
-  function handleLogin(password, email) {
+  async function handleLogin(password, email) {
     return authorize(password, email)
       .then((res) => {
         if (res.token) {
@@ -106,7 +109,7 @@ function App() {
       })
   }
 
-  function handleRegistration(password, email) {
+  async function handleRegistration(password, email) {
     return register(password, email)
       .then((res) => {
         if (res.data.email) {
@@ -202,9 +205,10 @@ function App() {
   }
 
   function goExit() {
-    setIsloggedIn(false)
     localStorage.removeItem('jwt');
+    setIsloggedIn(false) // --- крашится при смене стейта на false 
     navigate('/', { replace: true });
+    console.log('ok')
   }
 
   function goEnter() {
@@ -216,7 +220,7 @@ function App() {
     document.querySelector('.burger').classList.add('burger_opened');
   }
 
-  function handleAddPlaceSubmit(item) {
+ async function handleAddPlaceSubmit(item) {
     setIsApiProcessing(true)
     return api.addCard(item)
       .then((data) => {
@@ -242,7 +246,10 @@ function App() {
           });
         })
         .catch(err => console.log(`Component Main get ${err}`))
+    } return () => {
+      console.log('api.getProfile()')
     }
+
   }, [isloggedIn]);
 
   useEffect(() => {
@@ -251,6 +258,8 @@ function App() {
         .then((data) => {
           setCards([...cards, ...data]);
         }).catch(err => console.log(`Component Main get ${err}`))
+    } return () => {
+      console.log('api.getInitialCard()')
     }
   }, [isloggedIn]);
 
