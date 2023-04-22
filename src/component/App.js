@@ -46,9 +46,7 @@ function App() {
 
   useEffect(() => {
     handleTokenCheck()
-    return () => {
-      console.log('handleTokenCheck()')
-    }
+    return () => { }
   }, [])
 
   function handleCardRemoveClick(card) {
@@ -206,7 +204,7 @@ function App() {
 
   function goExit() {
     localStorage.removeItem('jwt');
-    setIsloggedIn(false) // --- крашится при смене стейта на false 
+    setIsloggedIn(false)
     navigate('/', { replace: true });
     console.log('ok')
   }
@@ -238,7 +236,7 @@ function App() {
 
   useEffect(() => {
     if (isloggedIn) {
-      return api.getProfile()
+       api.getProfile()
         .then((data) => {
           setCurrentUser({
             ...currentUser,
@@ -246,21 +244,17 @@ function App() {
           });
         })
         .catch(err => console.log(`Component Main get ${err}`))
-    } return () => {
-      console.log('api.getProfile()')
-    }
+    } return () => { }
 
   }, [isloggedIn]);
 
   useEffect(() => {
     if (isloggedIn) {
-      return api.getInitialCard()
+       api.getInitialCard()
         .then((data) => {
           setCards([...cards, ...data]);
         }).catch(err => console.log(`Component Main get ${err}`))
-    } return () => {
-      console.log('api.getInitialCard()')
-    }
+    } return () => { }
   }, [isloggedIn]);
 
   useEffect(() => {
